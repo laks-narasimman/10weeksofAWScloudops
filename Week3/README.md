@@ -41,10 +41,19 @@ You should document your progress and steps taken during the challenge. This doc
 - **Key Takeaways**: Share your key learnings from this week's challenge. 🧐
 - **Resources**: List any helpful resources or references you used. 📚
 
-### 3. Screen Recording or Live Website 📽️
-Optionally, you can create a screen recording or deploy a live website demonstrating your implementation. This adds an interactive element to your documentation and can be valuable to your portfolio. 🎥
+### Why terraform backend.tf and .tfstate are required
 
+- .tfstate is the file that has all the infra that are already provisioned through Terrform
+- let ussay you have two ec2 instances and you want to edit terraform config to create one more Ec2 instance
+- .tfstate will compare your existing infra connfig and add only the newer ones instead of overwriting to make sure the infra prvisioing is seamless
+### backend.tf
 
+- This is required for us to save the .tfstate file in remote storage like AWS S3 or whatever maybe the storage in Azure or GCP
+- If this file is missing then the .tfstate would be stored locally which can contain secrets like password that are highligy risky
+- This file can't take variables, hence we need to hardcode all the values 
+#### Why DynamDB required ✅
+- When your ```.tfstate``` file is AWS S3, there is a possibility that multiple user accessing this file, hence there is a high chance that the file can get locked.
+- To avoid ```.tfstate``` from getting locked, you need DynamoDB table with a partion key as ** LockID ** 
 ### Reference resources: ✅
 💡 If you have completed the week2 challenge then you are already familiar with the networking concepts, feel free to use the below resources to get started with Terraform
 
@@ -54,20 +63,4 @@ Optionally, you can create a screen recording or deploy a live website demonstra
 - [Terraform Modules](https://youtu.be/W92fsWzVRsg)
 - [Azure Terraform](https://youtu.be/I-MbnfNcikk)
 
-
-We encourage you to ask questions, seek help from the community by posting your queries/question in the help channel after joining our Discord community
-
-🔗 Join our community 👇  
-
-
-<a href="https://discord.com/invite/FMtJ2bVRUE"><img src="https://img.icons8.com/color/2x/discord--v2.png" height="60px"></img></a>
-<a href="https://github.com/TheCloudOpsCommunity"><img src="https://user-images.githubusercontent.com/91791257/235086411-9ec7aa5e-c095-44ce-b9e6-57b3bc3fead2.png" height="60px"></img></a>
-<a href="https://twitter.com/thecloudopscomm"><img src="https://i.postimg.cc/pVqVTNJd/X-logo.png" height="60px"></img></a>
-<a href="https://www.linkedin.com/company/thecloudopscomm/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" height="60px"></img></a>
-<a href="https://www.instagram.com/techtutorialswithpiyush/"><img src="https://user-images.githubusercontent.com/91791257/235086447-47658b7b-71fa-4baf-830a-3ba9b3a76a47.png" height="60px"></img></a>
-
-
-Have fun and learn during this Week 2 Challenge! 🤗
-
-Good luck, and happy cloud computing! 🌟
 
