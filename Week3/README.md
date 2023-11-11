@@ -53,7 +53,16 @@ You should document your progress and steps taken during the challenge. This doc
 - This file can't take variables, hence we need to hardcode all the values 
 #### Why DynamDB required ✅
 - When your ```.tfstate``` file is AWS S3, there is a possibility that multiple user accessing this file, hence there is a high chance that the file can get locked.
-- To avoid ```.tfstate``` from getting locked, you need DynamoDB table with a partion key as ** LockID ** 
+- To avoid ```.tfstate``` from getting locked, you need DynamoDB table with a partion key as ** LockID **
+### Why do we need two main.tf 🤹
+- As you root module to initialize terraform and you also have created child module for creating VPC, Subnets and Routetables.
+- In order for you to use the variables defined in root module, you need to define the VPC module with it's path from child module as below
+  ```module "vpc" {
+    source = "../modules/VPC"
+    project_name = var.project_name
+}
+```
+- when this is along with project_name , you officially establish the variable sharing between root module and child module
 ### Reference resources: ✅
 💡 If you have completed the week2 challenge then you are already familiar with the networking concepts, feel free to use the below resources to get started with Terraform
 
