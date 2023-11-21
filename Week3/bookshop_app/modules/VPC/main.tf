@@ -1,5 +1,5 @@
 # create vpc
-resource "aws_vpc" "vpc" {
+resource "aws_vpc" "main" {
   cidr_block              = var.VPC_CIDR
   instance_tenancy        = "default"
   enable_dns_hostnames    = true
@@ -10,10 +10,10 @@ resource "aws_vpc" "vpc" {
   }
 }
 #create internet gw
-resource "aws_internet_gateway" "internet_gateway" {
-  vpc_id = aws_vpc.vpc.id
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
   tags = {
-    Name = "${var.project_name}-igw"
+    Name = "${var.project_name}-IG"
   }
 }
 
@@ -61,7 +61,7 @@ resource "aws_route_table" "public_route_table" {
 #associate public subnet az1 to the public route table
 resource "aws_route_table_association" "public_subnet_az1_route_table_association" {
   subnet_id      = aws_subnet.public_subnet_az1.id
-  route_table_id = aws_route_table.public_route_table
+  route_table_id = aws_route_table.public_route_table.id
 }
 
 #associate public subnet az2 to the public route table
