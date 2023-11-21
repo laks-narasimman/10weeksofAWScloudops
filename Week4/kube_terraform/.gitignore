@@ -20,3 +20,8 @@ id_rsa
 crash.log
 crash.*.log
 # this is an impotant file
+Week3/bookshop_app/root/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/windows_386/terraform-provider-aws_v4.67.0_x5.exe
+Week3/bookshop_app/root/.terraform/terraform.tfstate
+Week3/bookshop_app/root/.terraform/modules/modules.json
+Week3/bookshop_app/root/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/windows_386/terraform-provider-aws_v4.67.0_x5.exe
+Week3/bookshop_app/root/.terraform/terraform.tfstate
