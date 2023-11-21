@@ -4,3 +4,12 @@
 *.tfvars.json
 *.tfstate.*
 **/.terraform/*
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.pem
+*.pub
+id_rsa
+crash.log
+crash.*.log
